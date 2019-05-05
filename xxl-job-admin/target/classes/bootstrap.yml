@@ -1,0 +1,78 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 45118
+spring:
+  application:
+    name: roc-component-job-admin
+  profiles:
+    active: test
+  cloud:
+    config:
+      fail-fast: true
+      discovery:
+        service-id: roc-infrastructure-config
+        enabled: true
+      profile: ${spring.profiles.active}
+---
+spring:
+  profiles: local
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:35000/eureka
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://172.31.118.86:35000/eureka
+---
+spring:
+  profiles: test
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://172.31.118.23:35000/eureka
+---
+spring:
+  profiles: prd
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    health-check-url-path: /actuator/health
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://scobala:84131421@172.18.51.41:35000/eureka

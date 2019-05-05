@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.xuxueli</groupId>
+		<artifactId>talelife-job</artifactId>
+		<version>2.0.2</version>
+	</parent>
+	<artifactId>xxl-job-admin-feign</artifactId>
+	<packaging>jar</packaging>
+	<name>${project.artifactId}</name>
+	<description>xxl-job-admin-feign客户端</description>
+	<properties>
+		<roc.version>0.0.2-SNAPSHOT</roc.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.syswinsoft</groupId>
+				<artifactId>roc-framework</artifactId>
+				<version>${roc.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<!-- fein -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.syswinsoft</groupId>
+			<artifactId>roc-framework-core</artifactId>
+			<version>${roc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.xuxueli</groupId>
+			<artifactId>xxl-job-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+</project>
